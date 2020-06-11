@@ -3,28 +3,35 @@ import { getCustomRepository } from 'typeorm';
 
 import WarehousesRepository from '../repositories/WarehousesRepository';
 import CreateWarehouseService from '../services/CreateWarehouseService';
+import RemoveWarehouseService from '../services/DeleteWarehouseService';
 
 const warehousesRouter = Router();
 
-warehousesRouter.get('/', (request, response) => {
+warehousesRouter.get('/', async (request, response) => {
   const warehousesRepository = getCustomRepository(WarehousesRepository);
-  const warehouses = warehousesRepository.find();
+  const warehouses = await warehousesRepository.find();
 
   return response.json(warehouses);
 });
 
 warehousesRouter.post('/', async (request, response) => {
-  try {
-    const { name, description } = request.body;
+  const { name, description } = request.body;
 
-    const createWarehouse = new CreateWarehouseService();
+  const createWarehouse = new CreateWarehouseService();
 
-    const warehouse = await createWarehouse.execute({ name, description });
+  const warehouse = await createWarehouse.execute({ name, description });
 
-    return response.json(warehouse);
-  } catch (err) {
-    return response.status(400).json({ error: err.message });
-  }
+  return response.json(warehouse);
+});
+
+warehousesRouter.delete('/', async (request, response) => {
+  const { id } = request.body;
+
+  const removeWarehouse = new RemoveWarehouseService();
+
+  await removeWarehouse.execute({ id });
+
+  return response.json({ deleted: true });
 });
 
 export default warehousesRouter;

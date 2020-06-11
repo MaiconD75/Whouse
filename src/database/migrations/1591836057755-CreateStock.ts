@@ -1,11 +1,15 @@
-import { MigrationInterface, QueryRunner, Table } from 'typeorm';
+import {
+  MigrationInterface,
+  QueryRunner,
+  Table,
+  TableForeignKey,
+} from 'typeorm';
 
-export default class CreateWarehouse1591472351276
-  implements MigrationInterface {
+export default class CreateStock1591836057755 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'warehouses',
+        name: 'stocks',
         columns: [
           {
             name: 'id',
@@ -21,9 +25,9 @@ export default class CreateWarehouse1591472351276
             isNullable: false,
           },
           {
-            name: 'description',
-            type: 'varchar',
-            isNullable: true,
+            name: 'warehouse_id',
+            type: 'uuid',
+            isNullable: false,
           },
           {
             name: 'created_at',
@@ -38,9 +42,23 @@ export default class CreateWarehouse1591472351276
         ],
       }),
     );
+
+    await queryRunner.createForeignKey(
+      'stocks',
+      new TableForeignKey({
+        name: 'WarehouseStock',
+        columnNames: ['warehouse_id'],
+        referencedColumnNames: ['id'],
+        referencedTableName: 'warehouses',
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
+      }),
+    );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('warehouses');
+    await queryRunner.dropForeignKey('stocks', 'WarehouseStock');
+
+    await queryRunner.dropTable('stocks');
   }
 }

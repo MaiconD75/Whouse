@@ -2,6 +2,7 @@ import { getCustomRepository } from 'typeorm';
 
 import Warehouse from '../models/Warehouse';
 import WarehousesRepository from '../repositories/WarehousesRepository';
+import AppError from '../errors/AppError';
 
 interface Request {
   name: string;
@@ -12,10 +13,10 @@ class CreateWarehouseService {
   public async execute({ name, description }: Request): Promise<Warehouse> {
     const warehousesRepository = getCustomRepository(WarehousesRepository);
 
-    const findSameWarehouseName = warehousesRepository.findByName(name);
+    const findSameWarehouseName = await warehousesRepository.findByName(name);
 
     if (findSameWarehouseName) {
-      throw Error('This name is alredy booked');
+      throw new AppError('This name is alredy booked');
     }
 
     const warehouse = warehousesRepository.create({
