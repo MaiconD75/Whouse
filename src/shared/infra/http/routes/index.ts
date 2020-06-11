@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import warehousesRouter from './warehouses.routes';
+import warehousesRouter from '@modules/warehouses/infra/http/routes/warehouses.routes';
 
 const routes = Router();
 
