@@ -4,8 +4,8 @@
 
 -O usuário deve poder criar um almoxarifado-✅;
 -O usuário deve poder deletar os almoxarifados-✅;
--O usuário deve poder editar os almoxarifados-⬜;
--O usuário deve poder listar os almoxarifados-⬜;
+-O usuário deve poder editar os almoxarifados-✅;
+-O usuário deve poder listar os almoxarifados-✅;
 
 **Requisições Não Funcionais-(RNF)**
 

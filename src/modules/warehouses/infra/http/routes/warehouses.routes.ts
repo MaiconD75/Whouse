@@ -11,6 +11,6 @@ warehousesRouter.post('/', warehousesController.create);
 
 warehousesRouter.delete('/', warehousesController.delete);
 
-// warehousesRouter.put('/', warehousesController.);
+warehousesRouter.put('/', warehousesController.update);
 
 export default warehousesRouter;

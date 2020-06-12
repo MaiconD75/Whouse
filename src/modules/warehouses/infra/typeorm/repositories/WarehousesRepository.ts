@@ -3,7 +3,6 @@ import { Repository, getRepository } from 'typeorm';
 import AppError from '@shared/errors/AppError';
 import IWarehousesRepository from '@modules/warehouses/repositories/IWarehousesRepository';
 import ICreateWarehouseDTO from '@modules/warehouses/dtos/ICreateWarehouseDTO';
-import IDeleteWarehouseDTO from '@modules/warehouses/dtos/IDeleteWarehouseDTO';
 
 import Warehouse from '../entities/Warehouse';
 
@@ -42,13 +41,17 @@ class WarehousesRepository implements IWarehousesRepository {
   }: ICreateWarehouseDTO): Promise<Warehouse> {
     const warehouse = this.ormRepository.create({ name, description });
 
-    await this.ormRepository.save(warehouse);
-
-    return warehouse;
+    return this.save(warehouse);
   }
 
   public async delete(id: string): Promise<void> {
     await this.ormRepository.delete({ id });
+  }
+
+  public async save(warehouse: Warehouse): Promise<Warehouse> {
+    await this.ormRepository.save(warehouse);
+
+    return warehouse;
   }
 }
 
