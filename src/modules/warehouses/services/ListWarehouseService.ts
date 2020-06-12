@@ -4,7 +4,7 @@ import IWarehousesRepository from '../repositories/IWarehousesRepository';
 import Warehouse from '../infra/typeorm/entities/Warehouse';
 
 @injectable()
-class CreateWarehouseService {
+class ListWarehouseService {
   constructor(
     @inject('WarehousesRepository')
     private warehousesRepository: IWarehousesRepository,
@@ -17,4 +17,4 @@ class CreateWarehouseService {
   }
 }
 
-export default CreateWarehouseService;
+export default ListWarehouseService;

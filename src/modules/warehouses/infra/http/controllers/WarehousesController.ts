@@ -4,6 +4,7 @@ import { container } from 'tsyringe';
 import CreateWarehouseService from '@modules/warehouses/services/CreateWarehouseService';
 import DeleteWarehouseService from '@modules/warehouses/services/DeleteWarehouseService';
 import ListWarehouseService from '@modules/warehouses/services/ListWarehouseService';
+import UpdateWarehouseService from '@modules/warehouses/services/UpdateWarehouseService';
 
 export default class WarehousesController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -25,9 +26,19 @@ export default class WarehousesController {
   }
 
   public async show(_: Request, response: Response): Promise<Response> {
-    const createWarehouse = container.resolve(ListWarehouseService);
-    const warehouses = await createWarehouse.execute();
+    const listWarehouse = container.resolve(ListWarehouseService);
+
+    const warehouses = await listWarehouse.execute();
 
     return response.json(warehouses);
+  }
+
+  public async update(request: Request, response: Response): Promise<Response> {
+    const { id, name, description } = request.body;
+    const updateWarehouse = container.resolve(UpdateWarehouseService);
+
+    const warehouse = await updateWarehouse.execute({ id, name, description });
+
+    return response.json(warehouse);
   }
 }
