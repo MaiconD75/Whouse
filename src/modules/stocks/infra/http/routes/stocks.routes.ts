@@ -1,9 +1,10 @@
 import { Router } from 'express';
 
-const StocksRouter = Router();
+import StocksController from '../controllers/StocksController';
 
-StocksRouter.get('/', async (request, response) => {
-  return response.json({ ok: true });
-});
+const stocksRouter = Router();
+const stocksController = new StocksController();
 
-export default StocksRouter;
+stocksRouter.post('/', stocksController.create);
+
+export default stocksRouter;

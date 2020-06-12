@@ -24,7 +24,7 @@ relacionados ao mesmo devem ser deletados-✅;
 
 **Requisições Funcionais-(RF)**
 
--O usuàrio deve poder criar um estoque-⬜;
+-O usuàrio deve poder criar um estoque-✅;
 -O usuàrio deve poder deletar os estoques-⬜;
 -O usuàrio deve poder editar os estoques-⬜;
 -O usuário deve poder listar os estoques-⬜;
@@ -37,11 +37,12 @@ relacionados ao mesmo devem ser deletados-✅;
 
 **Regras de Negócios-(RN)**
 
--Os estoques não podem ter nomes iguais-⬜;
--Os estoques devem ser atribuidos à exclusivamente 1 almoxarifado-⬜;
+-Os estoques não podem ter nomes iguais-✅;
+-Os estoques devem ser atribuidos à exclusivamente 1 almoxarifado-✅;
 -Cada almoxarifado deverá ter sua própria lista de estoques-⬜;
 -Quando o almoxarifado for deletado, todos os estoques
 relacionados ao mesmo devem ser deletados-✅;
+-A listagem de estoques deve ser feita pelo id do seu almoxarifado-⬜;
 
 # Products page
 
