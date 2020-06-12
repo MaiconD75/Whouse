@@ -8,10 +8,10 @@ import {
   JoinColumn,
 } from 'typeorm';
 
-import Warehouse from './Stock';
+import Warehouse from '@modules/warehouses/infra/typeorm/entities/Warehouse';
 
-@Entity('warehouses')
-class Warehouse {
+@Entity('stocks')
+class Stock {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -32,4 +32,4 @@ class Warehouse {
   updated_at: Date;
 }
 
-export default Warehouse;
+export default Stock;

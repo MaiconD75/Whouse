@@ -7,9 +7,9 @@ const warehousesController = new WarehousesController();
 
 warehousesRouter.get('/', warehousesController.show);
 
-warehousesRouter.post('/', warehousesController.create);
-
 warehousesRouter.delete('/', warehousesController.delete);
+
+warehousesRouter.post('/', warehousesController.create);
 
 warehousesRouter.put('/', warehousesController.update);
 
