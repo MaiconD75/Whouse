@@ -5,11 +5,7 @@ import WarehousesController from '../controllers/WarehousesController';
 const warehousesRouter = Router();
 const warehousesController = new WarehousesController();
 
-// warehousesRouter.get('/', async (request, response) => {
-//   const warehouses = await warehousesRepository.find();
-
-//   return response.json(warehouses);
-// });
+warehousesRouter.get('/', warehousesController.show);
 
 warehousesRouter.post('/', warehousesController.create);
 

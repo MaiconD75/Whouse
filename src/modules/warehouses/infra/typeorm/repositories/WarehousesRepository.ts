@@ -14,6 +14,12 @@ class WarehousesRepository implements IWarehousesRepository {
     this.ormRepository = getRepository(Warehouse);
   }
 
+  public async findAllWarehouses(): Promise<Array<Warehouse> | undefined> {
+    const warehouses = await this.ormRepository.find();
+
+    return warehouses;
+  }
+
   public async findByName(name: string): Promise<Warehouse | undefined> {
     const findWarehouse = await this.ormRepository.findOne({
       where: { name },
