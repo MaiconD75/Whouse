@@ -11,8 +11,11 @@ class StocksRepository implements IStocksRepository {
     this.ormRepository = getRepository(Stock);
   }
 
-  public async findByName(name: string): Promise<Stock | undefined> {
-    const stock = this.ormRepository.findOne({ where: { name } });
+  public async findSameStock({
+    name,
+    warehouse_id,
+  }: ICreateStockDTO): Promise<Stock | undefined> {
+    const stock = this.ormRepository.findOne({ where: { name, warehouse_id } });
 
     return stock;
   }
