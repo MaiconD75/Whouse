@@ -3,8 +3,9 @@ import { container } from 'tsyringe';
 
 import CreateWarehouseService from '@modules/warehouses/services/CreateWarehouseService';
 import DeleteWarehouseService from '@modules/warehouses/services/DeleteWarehouseService';
-import ListWarehouseService from '@modules/warehouses/services/ListWarehouseService';
+import ListWarehousesService from '@modules/warehouses/services/ListWarehousesService';
 import UpdateWarehouseService from '@modules/warehouses/services/UpdateWarehouseService';
+import GetWarehouseService from '@modules/warehouses/services/GetWarehouseService';
 
 export default class WarehousesController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -25,12 +26,19 @@ export default class WarehousesController {
     return response.json({ deleted: true });
   }
 
-  public async show(_: Request, response: Response): Promise<Response> {
-    const listWarehouse = container.resolve(ListWarehouseService);
-
-    const warehouses = await listWarehouse.execute();
+  public async show(request: Request, response: Response): Promise<Response> {
+    const listWarehouses = container.resolve(ListWarehousesService);
+    const warehouses = await listWarehouses.execute();
 
     return response.json(warehouses);
+  }
+
+  public async index(request: Request, response: Response): Promise<Response> {
+    const { id } = request.params;
+    const getWarehouse = container.resolve(GetWarehouseService);
+    const warehouse = await getWarehouse.execute({ id });
+
+    return response.json(warehouse);
   }
 
   public async update(request: Request, response: Response): Promise<Response> {

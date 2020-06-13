@@ -3,20 +3,58 @@ import { Repository, getRepository } from 'typeorm';
 import AppError from '@shared/errors/AppError';
 import IWarehousesRepository from '@modules/warehouses/repositories/IWarehousesRepository';
 import ICreateWarehouseDTO from '@modules/warehouses/dtos/ICreateWarehouseDTO';
+import INewWarehouseDTO from '@modules/warehouses/dtos/INewWarehouseDTO';
 
+import Stock from '@modules/stocks/infra/typeorm/entities/Stock';
 import Warehouse from '../entities/Warehouse';
 
 class WarehousesRepository implements IWarehousesRepository {
   private ormRepository: Repository<Warehouse>;
 
+  private stocksRepository: Repository<Stock>;
+
   constructor() {
     this.ormRepository = getRepository(Warehouse);
+    this.stocksRepository = getRepository(Stock);
   }
 
-  public async findAllWarehouses(): Promise<Array<Warehouse> | undefined> {
+  public async findAllWarehouses(): Promise<
+    Array<INewWarehouseDTO> | undefined
+  > {
     const warehouses = await this.ormRepository.find();
 
-    return warehouses;
+    const newWarehouses = await Promise.all(
+      warehouses.map(async warehouse => {
+        const warehouse_id = warehouse.id;
+        const stocks = await this.stocksRepository.find({
+          where: { warehouse_id },
+        });
+        const newList = {
+          ...warehouse,
+          stocks,
+        };
+        return newList;
+      }),
+    );
+    return newWarehouses;
+  }
+
+  public async findWarehouse(
+    id: string,
+  ): Promise<INewWarehouseDTO | undefined> {
+    const warehouse = await this.ormRepository.findOne(id);
+    if (!warehouse) {
+      throw new AppError('This warehouse does not exist');
+    }
+    const stocks = await this.stocksRepository.find({
+      where: { warehouse_id: id },
+    });
+    const newWarehouse = {
+      ...warehouse,
+      stocks,
+    };
+
+    return newWarehouse;
   }
 
   public async findByName(name: string): Promise<Warehouse | undefined> {
