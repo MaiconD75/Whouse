@@ -18,25 +18,10 @@ class WarehousesRepository implements IWarehousesRepository {
     this.stocksRepository = getRepository(Stock);
   }
 
-  public async findAllWarehouses(): Promise<
-    Array<INewWarehouseDTO> | undefined
-  > {
+  public async findAllWarehouses(): Promise<Array<Warehouse> | undefined> {
     const warehouses = await this.ormRepository.find();
 
-    const newWarehouses = await Promise.all(
-      warehouses.map(async warehouse => {
-        const warehouse_id = warehouse.id;
-        const stocks = await this.stocksRepository.find({
-          where: { warehouse_id },
-        });
-        const newList = {
-          ...warehouse,
-          stocks,
-        };
-        return newList;
-      }),
-    );
-    return newWarehouses;
+    return warehouses;
   }
 
   public async findWarehouse(

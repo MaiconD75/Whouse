@@ -1,7 +1,7 @@
 import { injectable, inject } from 'tsyringe';
 
 import IWarehousesRepository from '../repositories/IWarehousesRepository';
-import INewWarehouseDTO from '../dtos/INewWarehouseDTO';
+import Warehouse from '../infra/typeorm/entities/Warehouse';
 
 @injectable()
 class ListWarehouseService {
@@ -10,7 +10,7 @@ class ListWarehouseService {
     private warehousesRepository: IWarehousesRepository,
   ) {}
 
-  public async execute(): Promise<Array<INewWarehouseDTO> | undefined> {
+  public async execute(): Promise<Array<Warehouse> | undefined> {
     const warehouses = await this.warehousesRepository.findAllWarehouses();
 
     return warehouses;
