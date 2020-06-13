@@ -7,7 +7,7 @@ const warehousesController = new WarehousesController();
 
 warehousesRouter.get('/', warehousesController.show);
 
-warehousesRouter.get('/:id/warehouse', warehousesController.index);
+warehousesRouter.get('/:id', warehousesController.index);
 
 warehousesRouter.delete('/', warehousesController.delete);
 

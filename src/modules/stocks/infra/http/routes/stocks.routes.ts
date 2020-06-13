@@ -7,4 +7,8 @@ const stocksController = new StocksController();
 
 stocksRouter.post('/', stocksController.create);
 
+stocksRouter.put('/', stocksController.update);
+
+stocksRouter.delete('/', stocksController.delete);
+
 export default stocksRouter;

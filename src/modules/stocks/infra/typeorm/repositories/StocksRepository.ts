@@ -2,6 +2,7 @@ import { Repository, getRepository } from 'typeorm';
 
 import IStocksRepository from '@modules/stocks/repositories/IStocksRepository';
 import ICreateStockDTO from '@modules/stocks/dtos/ICreateStockDTO';
+import AppError from '@shared/errors/AppError';
 import Stock from '../entities/Stock';
 
 class StocksRepository implements IStocksRepository {
@@ -20,6 +21,15 @@ class StocksRepository implements IStocksRepository {
     return stock;
   }
 
+  public async findById(id: string): Promise<Stock | undefined> {
+    try {
+      const stock = this.ormRepository.findOne(id);
+      return stock;
+    } catch {
+      throw new AppError('This is a invalid id');
+    }
+  }
+
   public async create({ name, warehouse_id }: ICreateStockDTO): Promise<Stock> {
     const stock = this.ormRepository.create({
       name,
@@ -27,6 +37,10 @@ class StocksRepository implements IStocksRepository {
     });
 
     return this.save(stock);
+  }
+
+  public async delete(id: string): Promise<void> {
+    this.ormRepository.delete({ id });
   }
 
   public async save(stock: Stock): Promise<Stock> {
