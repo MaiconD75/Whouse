@@ -49,10 +49,10 @@ relacionados ao mesmo devem ser deletados-✅;
 **Requisições Funcionais-(RF)**
 
 -O usuàrio deve poder criar um produto-✅;
--O usuàrio deve poder deletar os produtos-⬜;
+-O usuàrio deve poder deletar os produtos-✅;
 -O usuàrio deve poder editar os produtos-⬜;
--O usuário deve poder listar os produtos-⬜;
 -O usuário deve poder atribuir uma imagem ao produto-⬜;
+-O usuário deve poder listar os produtos-⬜;
 
 **Requisições Não Funcionais-(RNF)**
 
