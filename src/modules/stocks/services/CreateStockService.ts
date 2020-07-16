@@ -23,7 +23,6 @@ class CreateStockService {
     const warehouseExist = await this.warehousesRepository.findById(
       warehouse_id,
     );
-    console.log(warehouseExist);
 
     if (!warehouseExist) {
       throw new AppError('This warehouse does not exist');

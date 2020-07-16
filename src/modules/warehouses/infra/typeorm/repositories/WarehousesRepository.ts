@@ -51,8 +51,8 @@ class WarehousesRepository implements IWarehousesRepository {
 
   public async findById(id: string): Promise<Warehouse | undefined> {
     try {
-      const findWarehouse = await this.ormRepository.findOne(id);
-      return findWarehouse;
+      const warehouse = await this.ormRepository.findOne(id);
+      return warehouse;
     } catch {
       throw new AppError('This is a invalid id');
     }
