@@ -48,7 +48,7 @@ relacionados ao mesmo devem ser deletados-✅;
 
 **Requisições Funcionais-(RF)**
 
--O usuàrio deve poder criar um produto-⬜;
+-O usuàrio deve poder criar um produto-✅;
 -O usuàrio deve poder deletar os produtos-⬜;
 -O usuàrio deve poder editar os produtos-⬜;
 -O usuário deve poder listar os produtos-⬜;
@@ -63,7 +63,11 @@ relacionados ao mesmo devem ser deletados-✅;
 **Regras de Negócios-(RN)**
 
 -A atribuição de uma imagem ao produto não deve ser obrigatório-⬜;
--Os produtos devem ser atribuidos à exclusivamente 1 stock-⬜;
--Os produtos devem possuir uma quantidade-⬜;
--A quantidade de um produto deve ser maior que 0-⬜;
--O produto pode ter uma especificação não obrigatória-⬜;
+-Os produtos devem ser atribuidos à exclusivamente 1 stock-✅;
+-Os produtos devem possuir uma quantidade-✅;
+-A quantidade de um produto deve ser maior que 0-✅;
+-O produto pode ter uma especificação não obrigatória-✅;
+
+# Bugs to FIX
+
+-As ferramentas de deletar n~ao verificam a existência dos itens;

@@ -16,14 +16,16 @@ class StocksRepository implements IStocksRepository {
     name,
     warehouse_id,
   }: ICreateStockDTO): Promise<Stock | undefined> {
-    const stock = this.ormRepository.findOne({ where: { name, warehouse_id } });
+    const stock = await this.ormRepository.findOne({
+      where: { name, warehouse_id },
+    });
 
     return stock;
   }
 
   public async findById(id: string): Promise<Stock | undefined> {
     try {
-      const stock = this.ormRepository.findOne(id);
+      const stock = await this.ormRepository.findOne(id);
       return stock;
     } catch {
       throw new AppError('This is a invalid id');
@@ -31,7 +33,7 @@ class StocksRepository implements IStocksRepository {
   }
 
   public async create({ name, warehouse_id }: ICreateStockDTO): Promise<Stock> {
-    const stock = this.ormRepository.create({
+    const stock = await this.ormRepository.create({
       name,
       warehouse_id,
     });
