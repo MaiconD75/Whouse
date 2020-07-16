@@ -69,5 +69,3 @@ relacionados ao mesmo devem ser deletados-✅;
 -O produto pode ter uma especificação não obrigatória-✅;
 
 # Bugs to FIX
-
--As ferramentas de deletar n~ao verificam a existência dos itens;
