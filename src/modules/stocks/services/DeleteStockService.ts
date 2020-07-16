@@ -15,7 +15,7 @@ class DeleteStockService {
   ) {}
 
   public async execute({ id }: IRequest): Promise<void> {
-    const warehouseExist = this.stocksRepository.findById(id);
+    const warehouseExist = await this.stocksRepository.findById(id);
 
     if (!warehouseExist) {
       throw new AppError('This stock does not exist');
