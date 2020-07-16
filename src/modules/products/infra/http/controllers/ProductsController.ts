@@ -3,6 +3,7 @@ import { container } from 'tsyringe';
 
 import CreateProductService from '@modules/products/services/CreateProductService';
 import DeleteProductService from '@modules/products/services/DeleteProductService';
+import UpdateProductService from '@modules/products/services/UpdateProductService';
 
 export default class ProductsController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -24,5 +25,18 @@ export default class ProductsController {
     await deleteProduct.execute({ id });
 
     return response.json({ delete: 'true' });
+  }
+
+  public async update(request: Request, response: Response): Promise<Response> {
+    const { id, name, specification, amount } = request.body;
+    const updateProduct = container.resolve(UpdateProductService);
+    const product = await updateProduct.execute({
+      id,
+      name,
+      specification,
+      amount,
+    });
+
+    return response.json(product);
   }
 }

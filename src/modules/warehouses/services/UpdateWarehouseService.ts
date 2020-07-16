@@ -28,6 +28,14 @@ class UpdateWarehouseService {
       throw new AppError(`A non-existent warehouse can't by modified`);
     }
 
+    const repeatedName = await this.warehousesRepository.findByName(name);
+
+    if (repeatedName) {
+      throw new AppError(
+        'This name is already booked or the warehouse already has this name',
+      );
+    }
+
     warehouse.name = name;
     warehouse.description = description;
 
