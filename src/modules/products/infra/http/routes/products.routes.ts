@@ -9,4 +9,6 @@ productsRouter.post('/', productsController.create);
 
 productsRouter.delete('/', productsController.delete);
 
+productsRouter.put('/', productsController.update);
+
 export default productsRouter;

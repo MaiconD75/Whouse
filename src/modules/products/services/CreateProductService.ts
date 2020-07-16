@@ -27,22 +27,21 @@ class CreateProductService {
     amount,
     stock_id,
   }: IRequest): Promise<Products> {
-    const stockExist = await this.stocksRepository.findById(stock_id);
-    const productExist = await this.productsRepository.findSameProduct(
-      name,
-      stock_id,
-    );
-    console.log(stock_id);
-    console.log(stockExist);
-
     if (amount < 0) {
-      throw new AppError('Products not can have a negative amount');
+      throw new AppError('Products does not can have a negative amount');
     }
+
+    const stockExist = await this.stocksRepository.findById(stock_id);
 
     if (!stockExist) {
       throw new AppError('This stock does not exist');
     }
-    console.log(productExist);
+
+    const productExist = await this.productsRepository.findSameProduct(
+      name,
+      stock_id,
+    );
+
     if (productExist) {
       throw new AppError('This product is already booked in this stock');
     }

@@ -23,6 +23,19 @@ class UpdatestockService {
       throw new AppError(`A non-existent stock can't by modified`);
     }
 
+    const { warehouse_id } = stock;
+
+    const repeatedName = await this.stocksRepository.findSameStock({
+      name,
+      warehouse_id,
+    });
+
+    if (repeatedName) {
+      throw new AppError(
+        'This name is already booked or the stock already has this name',
+      );
+    }
+
     stock.name = name;
 
     await this.stocksRepository.save(stock);
