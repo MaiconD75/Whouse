@@ -3,13 +3,19 @@ import { Repository, getRepository } from 'typeorm';
 import IStocksRepository from '@modules/stocks/repositories/IStocksRepository';
 import ICreateStockDTO from '@modules/stocks/dtos/ICreateStockDTO';
 import AppError from '@shared/errors/AppError';
+
+import Product from '@modules/products/infra/typeorm/entities/Product';
+import INewStockDTO from '@modules/stocks/dtos/INewStockDTO';
 import Stock from '../entities/Stock';
 
 class StocksRepository implements IStocksRepository {
   private ormRepository: Repository<Stock>;
 
+  private productRepository: Repository<Product>;
+
   constructor() {
     this.ormRepository = getRepository(Stock);
+    this.productRepository = getRepository(Product);
   }
 
   public async findSameStock({
@@ -30,6 +36,23 @@ class StocksRepository implements IStocksRepository {
     } catch {
       throw new AppError('This is a invalid id');
     }
+  }
+
+  public async findStocks(warehouse_id: string): Promise<Array<INewStockDTO>> {
+    const stocks = await this.ormRepository.find({
+      where: { warehouse_id },
+    });
+
+    const newStocks = Promise.all(
+      stocks.map(async stock => ({
+        ...stock,
+        products: await this.productRepository.find({
+          where: { stock_id: stock.id },
+        }),
+      })),
+    );
+
+    return newStocks;
   }
 
   public async create({ name, warehouse_id }: ICreateStockDTO): Promise<Stock> {

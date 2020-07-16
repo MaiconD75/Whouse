@@ -1,7 +1,7 @@
-import Stock from '@modules/stocks/infra/typeorm/entities/Stock';
+import INewStockDTO from '../../stocks/dtos/INewStockDTO';
 
 export default interface INewWarehouseDTO {
-  stocks: Stock[] | undefined;
+  stocks: Array<INewStockDTO>;
   id: string;
   name: string;
   description: string;
