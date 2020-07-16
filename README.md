@@ -51,8 +51,8 @@ relacionados ao mesmo devem ser deletados-✅;
 -O usuàrio deve poder criar um produto-✅;
 -O usuàrio deve poder deletar os produtos-✅;
 -O usuàrio deve poder editar os produtos-✅;
+-O usuário deve poder listar os produtos-✅;
 -O usuário deve poder atribuir uma imagem ao produto-⬜;
--O usuário deve poder listar os produtos-⬜;
 
 **Requisições Não Funcionais-(RNF)**
 
@@ -62,10 +62,10 @@ relacionados ao mesmo devem ser deletados-✅;
 
 **Regras de Negócios-(RN)**
 
--A atribuição de uma imagem ao produto não deve ser obrigatório-⬜;
 -Os produtos devem ser atribuidos à exclusivamente 1 stock-✅;
 -Os produtos devem possuir uma quantidade-✅;
 -A quantidade de um produto deve ser maior que 0-✅;
 -O produto pode ter uma especificação não obrigatória-✅;
+-A atribuição de uma imagem ao produto não deve ser obrigatório-⬜;
 
 # Bugs to FIX
