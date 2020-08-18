@@ -29,8 +29,6 @@ class GetWarehouseService {
 
     const stocks = await this.stocksRepository.findStocks(id);
 
-    console.log(stocks);
-
     const newWarehouse = {
       ...warehouse,
       stocks,

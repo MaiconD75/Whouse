@@ -4,6 +4,7 @@ import { container } from 'tsyringe';
 import CreateStockService from '@modules/stocks/services/CreateStockService';
 import DeleteStockService from '@modules/stocks/services/DeleteStockService';
 import UpdateStockService from '@modules/stocks/services/UpdateStockService';
+import GetStockService from '@modules/stocks/services/GetStockService';
 
 export default class StocksController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -20,6 +21,15 @@ export default class StocksController {
     await deleteStock.execute({ id });
 
     return response.json({ deleted: true });
+  }
+
+  public async index(request: Request, response: Response): Promise<Response> {
+    const { id } = request.params;
+
+    const getStock = container.resolve(GetStockService);
+    const stock = await getStock.execute({ id });
+
+    return response.json(stock);
   }
 
   public async update(request: Request, response: Response): Promise<Response> {
