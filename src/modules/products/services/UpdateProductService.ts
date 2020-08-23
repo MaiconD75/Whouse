@@ -36,15 +36,17 @@ class UpdateProductService {
 
     const { stock_id } = product;
 
-    const repeatedName = await this.productsRepository.findSameProduct(
+    const sameName = await this.productsRepository.findSameProduct(
       name,
       stock_id,
     );
 
-    if (repeatedName) {
-      throw new AppError(
-        'This name is already booked or the product already has this name',
-      );
+    if (sameName) {
+      const repeatedName = product.id !== sameName.id;
+      console.log(repeatedName, product.id, sameName.id);
+      if (repeatedName) {
+        throw new AppError('This name is already booked');
+      }
     }
 
     product.name = name;
