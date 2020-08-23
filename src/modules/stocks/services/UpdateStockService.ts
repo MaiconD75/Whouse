@@ -25,15 +25,17 @@ class UpdatestockService {
 
     const { warehouse_id } = stock;
 
-    const repeatedName = await this.stocksRepository.findSameStock({
+    const sameName = await this.stocksRepository.findSameStock({
       name,
       warehouse_id,
     });
 
-    if (repeatedName) {
-      throw new AppError(
-        'This name is already booked or the stock already has this name',
-      );
+    if (sameName) {
+      const repeatedName = stock.id !== sameName.id;
+      console.log(repeatedName, stock.id, sameName.id);
+      if (repeatedName) {
+        throw new AppError('This name is already booked');
+      }
     }
 
     stock.name = name;
