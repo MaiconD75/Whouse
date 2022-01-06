@@ -1,71 +1,47 @@
-# Warehouse page
+<h1 align="center">Whouse</h1>
+<p align="center">A responsive warehouse manager application</p>
 
-**Requisições Funcionais-(RF)**
+<p align="center">
+ <a href="#about">About</a> •
+ <a href="#status">Status</a> •
+ <a href="#entities">Entities</a> • 
+ <a href="#-tools">Tools</a>
+</p>
 
--O usuário deve poder criar um almoxarifado-✅;
--O usuário deve poder deletar os almoxarifados-✅;
--O usuário deve poder editar os almoxarifados-✅;
--O usuário deve poder listar os almoxarifados-✅;
+# About
+<p align="left">This application can help you to manage your warehouses or stocks from your home or enterprise.</p><br/>
+<p align="left">You can create a warehouse and define many different stocks with a loot of products and your amount.</p>
 
-**Requisições Não Funcionais-(RNF)**
 
-.
-.
-.
+# Status
+<h4 align="left"> 
+  ⚠ Development
+</h4>
 
-**Regras de Negócios-(RN)**
+# Entities
+* ## Warehouses
+  * id: uuid
+  * name: varchar
+  * description: varchar
+* ## Stocks
+  * id: uuid
+  * warehouse_id: uuid
+  * name: varchar
+* ## Products
+  * id: uuid
+  * stock_id: uuid
+  * name: varchar
+  * specification: varchar
+  * amount: integer
+  * product_image: varchar
 
--O almoxarifado não pode ter um nome já registrado-✅;
--O almoxarifado deve ter uma descrição-✅;
--Quando o almoxarifado for deletado, todos os estoques
-relacionados ao mesmo devem ser deletados-✅;
+# 🛠 Tools
 
-# Sotck page
+The following tools were used in the construction of the project:
 
-**Requisições Funcionais-(RF)**
-
--O usuàrio deve poder criar um estoque-✅;
--O usuàrio deve poder deletar os estoques-✅;
--O usuàrio deve poder editar os estoques-✅;
--O usuário deve poder listar os estoques-✅;
-
-**Requisições Não Funcionais-(RNF)**
-
-.
-.
-.
-
-**Regras de Negócios-(RN)**s
-
--Os estoques não podem ter nomes iguais-✅;
--Os estoques devem ser atribuidos à exclusivamente 1 almoxarifado-✅;
--Cada almoxarifado deverá ter sua própria lista de estoques-✅;
--Quando o almoxarifado for deletado, todos os estoques
-relacionados ao mesmo devem ser deletados-✅;
--A listagem de estoques deve ser feita pelo id do seu almoxarifado-✅;
-
-# Products page
-
-**Requisições Funcionais-(RF)**
-
--O usuàrio deve poder criar um produto-✅;
--O usuàrio deve poder deletar os produtos-✅;
--O usuàrio deve poder editar os produtos-✅;
--O usuário deve poder listar os produtos-✅;
--O usuário deve poder atribuir uma imagem ao produto-✅;
-
-**Requisições Não Funcionais-(RNF)**
-
-.
-.
-.
-
-**Regras de Negócios-(RN)**
-
--Os produtos devem ser atribuidos à exclusivamente 1 stock-✅;
--Os produtos devem possuir uma quantidade-✅;
--A quantidade de um produto deve ser maior que 0-✅;
--O produto pode ter uma especificação não obrigatória-✅;
--A atribuição de uma imagem ao produto não deve ser obrigatório-✅;
-
-# Bugs to FIX
+- [Node.js](https://nodejs.org/en/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Express](https://expressjs.com/)
+- [TypeORM](https://typeorm.io/)
+- [PostgresSQL](https://www.postgresql.org/)
+- [Redis](https://redis.io/)
