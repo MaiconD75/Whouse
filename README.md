@@ -9,7 +9,7 @@
 </p>
 
 # About
-<p align="left">This application can help you to manage your warehouses or stocks from your home or enterprise.</p><br/>
+<p align="left">This application can help you to manage your warehouses or stocks from your home and enterprise.</p><br/>
 <p align="left">You can create a warehouse and define many different stocks with a loot of products and your amount.</p>
 
 
